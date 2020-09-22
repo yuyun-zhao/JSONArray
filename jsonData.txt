@@ -1,0 +1,30 @@
+{
+"fruit number":"2",
+"vegetable number":"3",
+"fruit":
+[
+{
+"name":"apple",
+"color":"red"
+},
+{
+"name":"orange",
+"color":"orange"
+}
+],
+"vegetable":
+[
+{
+"name":"chili",
+"color":"red"
+},
+{
+"name":"potato",
+"color":"yellow"
+},
+{
+"name":"gc",
+"color":"yellow++"
+}
+]
+}
