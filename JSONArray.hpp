@@ -1,32 +1,32 @@
-#ifndef jsonObject_h
-#define jsonObject_h
+#ifndef JSONArray_h
+#define JSONArray_h
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <vector>
 
-class jsonObject
+class JSONArray
 {
 public:
-	jsonObject()
+	JSONArray()
 	{
 		m_sstream << "{\n";
 	}
 
-	jsonObject(const jsonObject& obj)
+	JSONArray(const JSONArray& obj)
 	{
 		std::string m_string = obj.m_sstream.str();
 		m_sstream << m_string;
 	};
 
-	void insertKVPair(std::string key, std::string value)
+	void put(std::string key, std::string value)
 	{
-		jsonKVPair m_JsonKVPair(key, value);
-		m_sstream << m_JsonKVPair.getOutput() << ",\n";
+		JSONKVPair m_JSONKVPair(key, value);
+		m_sstream << m_JSONKVPair.getOutput() << ",\n";
 	}
 
-	void insertJsonObject(std::string key, std::vector<jsonObject> objectVector)
+	void putJSONArray(std::string key, std::vector<JSONArray> objectVector)
 	{
 		m_sstream << "\"" + key + "\":\n[\n";
 
@@ -57,15 +57,15 @@ public:
 
 private:
 
-	class jsonKVPair
+	class JSONKVPair
 	{
 	public:
-		jsonKVPair()
+		JSONKVPair()
 			:m_Key("NULL"), m_Value("NULL")
 		{
 		}
 
-		jsonKVPair(std::string key, std::string value)
+		JSONKVPair(std::string key, std::string value)
 			:m_Key(key), m_Value(value)
 		{
 		}
@@ -82,7 +82,7 @@ private:
 		std::stringstream m_stringstream;
 	};
 
-	jsonKVPair m_JsonKVPair;
+	JSONKVPair m_JsonKVPair;
 	std::stringstream m_sstream;
 
 };
@@ -92,5 +92,5 @@ private:
 
 
 
-#endif // jsonObject_h
+#endif // JSONArray_h
 

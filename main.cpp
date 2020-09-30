@@ -1,57 +1,57 @@
 ﻿#include <iostream>
 #include <fstream>
 #include "picojson.h"
-#include "jsonObject.hpp"
+#include "JSONArray.hpp"
 
 
 int main()
 {
 	// first json object
-	std::vector<jsonObject> jsonObjVector1;
+	std::vector<JSONArray> JSONArrayVector1;
 
-	jsonObject jsonObj1_1;
-	jsonObj1_1.insertKVPair("name", "apple");
-	jsonObj1_1.insertKVPair("color", "red");
+	JSONArray JSONArray1_1;
+	JSONArray1_1.put("name", "apple");
+	JSONArray1_1.put("color", "red");
 
-	jsonObject jsonObj1_2;
-	jsonObj1_2.insertKVPair("name", "orange");
-	jsonObj1_2.insertKVPair("color", "orange");
+	JSONArray JSONArray1_2;
+	JSONArray1_2.put("name", "orange");
+	JSONArray1_2.put("color", "orange");
 
-	jsonObjVector1.push_back(jsonObj1_1);
-	jsonObjVector1.push_back(jsonObj1_2);
+	JSONArrayVector1.push_back(JSONArray1_1);
+	JSONArrayVector1.push_back(JSONArray1_2);
 
 
 	// second json object
-	std::vector<jsonObject> jsonObjVector2;
+	std::vector<JSONArray> JSONArrayVector2;
 
-	jsonObject jsonObj2_1;
-	jsonObj2_1.insertKVPair("name", "chili");
-	jsonObj2_1.insertKVPair("color", "red");
+	JSONArray JSONArray2_1;
+	JSONArray2_1.put("name", "chili");
+	JSONArray2_1.put("color", "red");
 
-	jsonObject jsonObj2_2;
-	jsonObj2_2.insertKVPair("name", "potato");
-	jsonObj2_2.insertKVPair("color", "yellow");
+	JSONArray JSONArray2_2;
+	JSONArray2_2.put("name", "potato");
+	JSONArray2_2.put("color", "yellow");
 
-	jsonObject jsonObj2_3;
-	jsonObj2_3.insertKVPair("name", "gc");
-	jsonObj2_3.insertKVPair("color", "yellow++");
+	JSONArray JSONArray2_3;
+	JSONArray2_3.put("name", "gc");
+	JSONArray2_3.put("color", "yellow++");
 
-	jsonObjVector2.push_back(jsonObj2_1);
-	jsonObjVector2.push_back(jsonObj2_2);
-	jsonObjVector2.push_back(jsonObj2_3);
+	JSONArrayVector2.push_back(JSONArray2_1);
+	JSONArrayVector2.push_back(JSONArray2_2);
+	JSONArrayVector2.push_back(JSONArray2_3);
 	
 	// root json object
-	jsonObject jsonRootObject;
+	JSONArray JSONArrayRoot;
 
-	jsonRootObject.insertKVPair("fruit number", "2");
-	jsonRootObject.insertKVPair("vegetable number", "3");
+	JSONArrayRoot.put("fruit number", "2");
+	JSONArrayRoot.put("vegetable number", "3");
 
-	jsonRootObject.insertJsonObject("fruit", jsonObjVector1);
-	jsonRootObject.insertJsonObject("vegetable", jsonObjVector2);
+	JSONArrayRoot.putJSONArray("fruit", JSONArrayVector1);
+	JSONArrayRoot.putJSONArray("vegetable", JSONArrayVector2);
 
-	std::string result = jsonRootObject.getOutput();
+	std::string result = JSONArrayRoot.getOutput();
 
-	std::ofstream outputDataFile("jsonData.txt");
+	std::ofstream outputDataFile("JSONArratData.txt");
 	outputDataFile << result;
 
 	// write the file "jsonData.txt"
@@ -60,7 +60,7 @@ int main()
 
 	// read the file 
 	std::ifstream ifs;
-	ifs.open("jsonData.txt", std::ios::in);
+	ifs.open("JSONArratData.txt", std::ios::in);
 	picojson::value param;
 	picojson::parse(param, ifs);
 
